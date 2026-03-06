@@ -508,9 +508,44 @@
             margin-right: 8px;
         }
 
+        /* PDF Download Button */
+        .pdf-download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #2d8ab8 0%, #1e5a7d 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 90, 125, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .pdf-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 90, 125, 0.4);
+        }
+
+        .pdf-download-btn:active {
+            transform: translateY(0);
+        }
+
+        .pdf-download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
         @media print {
-            .page {
-                page-break-after: always;
+            .pdf-download-btn {
+                display: none;
             }
         }
 
@@ -1096,6 +1131,21 @@
             </div>
         </div>
     </div>
+
+    <!-- PDF Download Button -->
+    <button class="pdf-download-btn" onclick="downloadPDF()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Download PDF
+    </button>
+
+    <script>
+        function downloadPDF() {
+            // Trigger browser print dialog which allows saving as PDF
+            window.print();
+        }
+    </script>
 
 </body>
 </html>
