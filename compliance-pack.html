@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N&B Solutions - PSL Compliance Pack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 60px 80px;
+            page-break-after: always;
+            position: relative;
+        }
+
+        .page.content-page {
+            padding-bottom: 0;
+        }
+
+        .page.detail-page {
+            padding-top: 0;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            right: 80px;
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            background: linear-gradient(135deg, rgba(30, 90, 125, 0.85) 0%, rgba(45, 138, 184, 0.85) 50%, rgba(126, 200, 227, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=1080&fit=crop') center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .cover-page .logo {
+            filter: none;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .cover-content {
+            max-width: 700px;
+            margin-top: 100px;
+        }
+
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .cover-title .highlight {
+            color: #7ec8e3;
+            font-style: italic;
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cover-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .decorative-wave {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 400px;
+            background: rgba(126, 200, 227, 0.2);
+            border-radius: 50% 0 0 0;
+        }
+
+        /* Introduction Page */
+        .intro-page {
+            background: linear-gradient(135deg, #2d5f6f 0%, #1e5a7d 100%);
+            color: white;
+        }
+
+        .intro-page .logo {
+            filter: none;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #7ec8e3;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .intro-content strong {
+            color: #7ec8e3;
+        }
+
+        .profile-section {
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #7ec8e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1e5a7d;
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contents Page */
+        .contents-page {
+            background: #f8f9fa;
+        }
+
+        .contents-page .logo {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .contents-page h1 {
+            color: #1e5a7d;
+            margin-bottom: 60px;
+        }
+
+        .contents-list {
+            list-style: none;
+        }
+
+        .contents-item {
+            margin-bottom: 50px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .contents-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #7ec8e3;
+            min-width: 80px;
+        }
+
+        .contents-details h2 {
+            font-size: 1.8rem;
+            color: #1e5a7d;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contents-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .contents-details li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .contents-details li:before {
+            content: "• ";
+            color: #7ec8e3;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .subsection {
+            margin-top: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Content Pages */
+        .content-page {
+            background: white;
+        }
+
+        .content-page .logo {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(30, 90, 125, 0.7) 0%, rgba(45, 138, 184, 0.7) 100%);
+            border-radius: 20px;
+            margin-bottom: 0;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content-image img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .content-overlay {
+            width: 100%;
+            padding: 60px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: white;
+            opacity: 0.9;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            opacity: 0.95;
+        }
+
+        .content-text {
+            padding: 40px 0;
+        }
+
+        .content-text h2 {
+            font-size: 2rem;
+            color: #1e5a7d;
+            margin-bottom: 20px;
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .content-text strong {
+            color: #1e5a7d;
+        }
+
+        /* Detail Pages */
+        .detail-page {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .detail-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(126, 200, 227, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(30, 90, 125, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .detail-page.pattern-dots::before {
+            background-image: 
+                radial-gradient(circle, rgba(126, 200, 227, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .detail-page.pattern-diagonal::before {
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(126, 200, 227, 0.02) 35px,
+                    rgba(126, 200, 227, 0.02) 70px
+                );
+        }
+
+        .detail-page .logo {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .detail-page h1 {
+            color: #1e5a7d;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-page h1 .section-number-prefix {
+            color: #7ec8e3;
+            font-weight: 700;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-section h2 {
+            font-size: 1.8rem;
+            color: #1e5a7d;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .detail-section h3 {
+            font-size: 1.4rem;
+            color: #2d8ab8;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-section li {
+            padding: 10px 0 10px 30px;
+            color: #555;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .detail-section li:before {
+            content: "• ";
+            color: #7ec8e3;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: #f0f8ff;
+            border-left: 4px solid #7ec8e3;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            color: #333;
+            margin: 0;
+        }
+
+        /* Two Column Layout */
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            padding-right: 20px;
+        }
+
+        .sidebar {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 12px;
+            align-self: start;
+        }
+
+        .sidebar.blue-theme {
+            background: #e3f2fd;
+        }
+
+        .sidebar.teal-theme {
+            background: #e0f2f1;
+        }
+
+        .sidebar.amber-theme {
+            background: #fff8e1;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-heading {
+            background: #7ec8e3;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: -30px -30px 20px -30px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .blue-theme .sidebar-heading {
+            background: #2d8ab8;
+        }
+
+        .teal-theme .sidebar-heading {
+            background: #1e5a7d;
+        }
+
+        .amber-theme .sidebar-heading {
+            background: #f57c00;
+        }
+
+        .sidebar-heading:not(:first-child) {
+            margin-top: 20px;
+            margin-left: -30px;
+            margin-right: -30px;
+            border-radius: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 8px 0;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .sidebar li:before {
+            content: "• ";
+            color: #7ec8e3;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .page {
+                padding: 40px 30px;
+            }
+
+            .logo {
+                width: 150px;
+                right: 30px;
+                top: 30px;
+            }
+
+            .cover-title {
+                font-size: 2.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .contents-number {
+                font-size: 3rem;
+            }
+
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <div class="cover-content">
+            <h1 class="cover-title">Manage Your PSL <span class="highlight">Compliantly</span></h1>
+            <h2 class="cover-subtitle">Prepare for the April 2026 Umbrella Reforms</h2>
+            <p class="cover-description">
+                Your essential guide to building a compliant, future-ready PSL. 
+                Practical insights to help you prepare for the reforms with confidence.
+            </p>
+        </div>
+        <div class="decorative-wave"></div>
+    </div>
+
+    <!-- Introduction Page -->
+    <div class="page intro-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <h1>INTRODUCTION</h1>
+        <div class="intro-content">
+            <p>
+                <strong>From 6 April 2026, agencies will become liable for any unpaid income tax 
+                as well as employee and employer National Insurance Contributions (NICs) if their 
+                umbrella partner fails to operate compliantly.</strong>
+            </p>
+            <p>
+                Having compliant providers on your Preferred Supplier List is now more critical 
+                than ever. The time to review and rationalise your PSL - is now. And we can help.
+            </p>
+            <p>
+                As one of the UK's most trusted compliance and payroll solutions providers, 
+                N&B Solutions has been at the forefront of compliance good practice. Our continued 
+                success depends on operating with the highest levels of compliance integrity, 
+                supporting businesses across multiple sectors.
+            </p>
+            <p>
+                Here, you'll learn more about <strong>what compliance means on paper, and, more 
+                importantly, in practice</strong>. We provide a structured framework and guide to 
+                take you through the process of building and maintaining a PSL, step-by-step.
+            </p>
+        </div>
+        <div class="profile-section">
+            <div class="profile-image">N&B</div>
+            <div class="profile-info">
+                <h2>N&B Solutions</h2>
+                <p>COMPLIANCE EXPERTS</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contents Page -->
+    <div class="page contents-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <h1>CONTENTS</h1>
+        <ul class="contents-list">
+            <li class="contents-item">
+                <div class="contents-number">1</div>
+                <div class="contents-details">
+                    <h2>Understand & Minimise PSL Risk</h2>
+                    <ul>
+                        <li>Why rationalise your PSL?</li>
+                        <li>Where PSLs go wrong</li>
+                        <li>How to simplify your PSL</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="contents-item">
+                <div class="contents-number">2</div>
+                <div class="contents-details">
+                    <h2>PSL Compliance Framework</h2>
+                    <p class="subsection">2.1 Company Structure & Legitimacy</p>
+                    <ul>
+                        <li>Company structure</li>
+                        <li>Financial health</li>
+                        <li>Insurance</li>
+                        <li>Business continuity</li>
+                    </ul>
+                    <p class="subsection">2.2 Solutions</p>
+                    <p class="subsection">2.3 Contracts & Payments</p>
+                    <p class="subsection">2.4 Operational & Payroll Controls</p>
+                    <ul>
+                        <li>Expenses</li>
+                        <li>Holiday</li>
+                        <li>Right to Work</li>
+                        <li>VAT & AWR</li>
+                        <li>Pensions</li>
+                    </ul>
+                    <p class="subsection">2.5 Asking the Right Questions</p>
+                </div>
+            </li>
+            <li class="contents-item">
+                <div class="contents-number">3</div>
+                <div class="contents-details">
+                    <h2>Documentation</h2>
+                </div>
+            </li>
+            <li class="contents-item">
+                <div class="contents-number">4</div>
+                <div class="contents-details">
+                    <h2>How We Can Help</h2>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Section 1: Why Rationalise Your PSL -->
+    <div class="page content-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <div class="content-image" style="background-image: linear-gradient(135deg, rgba(30, 90, 125, 0.7) 0%, rgba(45, 138, 184, 0.7) 100%), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop');">
+            <div class="content-overlay">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Understand & Minimise Risk</h2>
+                <p class="section-subtitle">Here we explain how the new regulations expose agencies to increased risk.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Rationalise Detail Page -->
+    <div class="page detail-page pattern-dots">
+        <h1>Why Rationalise Your PSL?</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    A good PSL is more than a list of companies you're prepared to work with, 
+                    it's the assurance regime that <strong>protects your business</strong>, clients, 
+                    and contractors.
+                </p>
+                <p>
+                    A strong PSL includes only thoroughly vetted partners who demonstrate proven 
+                    compliance, reliability, and service excellence. To protect your business, each 
+                    supplier should undergo robust due diligence and regular audits.
+                </p>
+                
+                <div class="highlight-box">
+                    <p><strong>Key Point:</strong> The April 2026 reforms make agencies jointly liable 
+                    for unpaid tax and NICs if umbrella companies fail to comply. This significantly 
+                    increases the financial and reputational risk of working with non-compliant providers.</p>
+                </div>
+                
+                <h2 style="color: #1e5a7d; font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px;">The Risks of Poor PSL Management</h2>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Financial liability for unpaid taxes and NICs
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Reputational damage from association with non-compliant providers
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Legal and regulatory penalties
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Loss of client trust and business relationships
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Operational disruption from provider failures
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar blue-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Benefits of a Well-Managed PSL</h3>
+                    <ul>
+                        <li>Protection from financial and legal liabilities</li>
+                        <li>Enhanced reputation and market credibility</li>
+                        <li>Improved service quality and reliability</li>
+                        <li>Stronger relationships with compliant partners</li>
+                        <li>Peace of mind for your business and clients</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: PSL Compliance Framework -->
+    <div class="page content-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <div class="content-image" style="background-image: linear-gradient(135deg, rgba(30, 90, 125, 0.7) 0%, rgba(45, 138, 184, 0.7) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop');">
+            <div class="content-overlay">
+                <div class="section-number">2</div>
+                <h2 class="section-title">PSL Compliance Framework</h2>
+                <p class="section-subtitle">A comprehensive framework for evaluating and maintaining compliant suppliers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Framework Detail Page -->
+    <div class="page detail-page">
+        <h1><span class="section-number-prefix">2.1</span> Company Structure & Legitimacy</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    Before engaging any umbrella company, it's vital to understand exactly who you are 
+                    contracting with and who is legally responsible for employing workers.
+                </p>
+                
+                <p>
+                    Understanding the corporate structure is important. Make sure you know which 
+                    legal entity you are engaging with, and which entity is ultimately responsible for 
+                    employing the workers being supplied.
+                </p>
+                
+                <p>
+                    You should take the time to verify company registration with Companies House 
+                    (active status, directors and registered address) as well as recent filings and 
+                    confirmation statements.
+                </p>
+                
+                <p>
+                    We would also recommend that you verify VAT registration and confirm PAYE 
+                    registration with HMRC. These checks are very simple to carry out.
+                </p>
+                
+                <p style="margin-top: 30px;">
+                    <strong>Reputable umbrella companies will readily provide formal documents that prove they 
+                    operate legally and transparently.</strong>
+                </p>
+                
+                <p>
+                    Entities that delay or refuse to share documentation may be hiding non-compliant structures.
+                </p>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Ask for:</h3>
+                    <ul>
+                        <li>A copy of the organisational chart</li>
+                        <li>Location of the company engaging the workers</li>
+                        <li>Details and credibility of ownership</li>
+                        <li>Details of key stakeholders, legal and compliance teams, day-to-day support</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">And verify:</h3>
+                    <ul>
+                        <li>Company registration with Companies House</li>
+                        <li>Check recent filings and confirmation statements</li>
+                        <li>Verify VAT registration with HMRC</li>
+                        <li>Confirm PAYE registration with HMRC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Framework Detail Page 2 -->
+    <div class="page detail-page pattern-diagonal">
+        <h1><span class="section-number-prefix">2.3</span> Contracts & Payments</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    Clear, compliant contracts are the foundation of any legitimate umbrella arrangement. 
+                    Review all contract templates to ensure they accurately reflect the employment relationship 
+                    and comply with current legislation.
+                </p>
+                
+                <p>
+                    Payment terms must be transparent and fair. Workers should receive timely payment with 
+                    all statutory deductions correctly calculated and clearly itemized on payslips.
+                </p>
+                
+                <p style="margin-top: 30px;">
+                    <strong>Ensure contracts clearly state employment status and that workers understand 
+                    their rights and obligations.</strong>
+                </p>
+            </div>
+            
+            <div class="sidebar teal-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Ask for:</h3>
+                    <ul>
+                        <li>Sample contract templates</li>
+                        <li>Example payslips showing deductions</li>
+                        <li>Payment terms and schedules</li>
+                        <li>Expense reimbursement policies</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">And verify:</h3>
+                    <ul>
+                        <li>Contracts comply with employment law</li>
+                        <li>Payment terms are fair and transparent</li>
+                        <li>Statutory deductions are correct</li>
+                        <li>Timely payment to workers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Framework Detail Page 2b -->
+    <div class="page detail-page pattern-dots">
+        <h1><span class="section-number-prefix">2.4</span> Operational & Payroll Controls</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-bottom: 15px;">Expenses</h3>
+                <p>
+                    Expense policies must comply with HMRC guidelines. Ensure proper documentation 
+                    and approval processes are in place, with no disguised remuneration schemes.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Holiday</h3>
+                <p>
+                    Verify compliance with Working Time Regulations and accurate calculation of 
+                    holiday entitlement. Check proper accrual and payment processes.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Right to Work</h3>
+                <p>
+                    Robust right to work checking processes are essential. Verify documentation 
+                    storage, security, and compliance with immigration legislation.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Pensions</h3>
+                <p>
+                    Confirm auto-enrolment compliance, pension scheme registration, and proper 
+                    contribution calculations and payments.
+                </p>
+            </div>
+            
+            <div class="sidebar amber-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Key Controls to Verify:</h3>
+                    <ul>
+                        <li>Expense policies comply with HMRC</li>
+                        <li>Holiday calculations are accurate</li>
+                        <li>Right to work checks are robust</li>
+                        <li>VAT registration and compliance</li>
+                        <li>Agency Workers Regulations adherence</li>
+                        <li>Auto-enrolment pension compliance</li>
+                        <li>Proper documentation processes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Framework Detail Page 3 -->
+    <div class="page detail-page">
+        <h1><span class="section-number-prefix">2.5</span> Asking the Right Questions</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    When evaluating potential PSL partners, it's essential to ask probing questions 
+                    that reveal their true compliance status and operational capabilities.
+                </p>
+                
+                <div class="highlight-box">
+                    <p><strong>Red Flags:</strong> Be wary of providers who cannot provide clear answers, 
+                    lack proper documentation, offer unusually low fees, or promote tax-efficient schemes. 
+                    These may indicate compliance risks.</p>
+                </div>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Key Questions to Ask</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        How do you ensure compliance with current tax and employment legislation?
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        What audits or certifications do you hold?
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        Can you provide evidence of your insurance coverage?
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        How do you handle HMRC enquiries or investigations?
+                    </li>
+                    <li style="padding: 8px 0; position: relative; padding-left: 25px;">
+                        <span style="position: absolute; left: 0; color: #7ec8e3; font-weight: bold;">•</span>
+                        What is your process for staying updated on regulatory changes?
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar blue-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Due Diligence Checklist:</h3>
+                    <ul>
+                        <li>Review company accounts and financial statements</li>
+                        <li>Verify insurance certificates and coverage</li>
+                        <li>Check Companies House records</li>
+                        <li>Review sample contracts and documentation</li>
+                        <li>Request HMRC compliance evidence</li>
+                        <li>Obtain client references</li>
+                        <li>Review audit reports and certifications</li>
+                        <li>Assess technology and data security</li>
+                        <li>Verify professional memberships</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Documentation -->
+    <div class="page content-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <div class="content-image" style="background-image: linear-gradient(135deg, rgba(30, 90, 125, 0.7) 0%, rgba(45, 138, 184, 0.7) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&h=1080&fit=crop');">
+            <div class="content-overlay">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Documentation</h2>
+                <p class="section-subtitle">Essential documentation for PSL compliance and audit trails.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation Detail Page -->
+    <div class="page detail-page pattern-diagonal">
+        <h1><span class="section-number-prefix">3</span> Documentation Requirements</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    Maintaining comprehensive documentation is crucial for demonstrating due diligence 
+                    and protecting your business in the event of HMRC enquiries or audits.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Company Information</h3>
+                <p>
+                    Collect certificates of incorporation, latest financial statements, company structure 
+                    charts, credit reports, and all business licenses and registrations.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Insurance & Compliance</h3>
+                <p>
+                    Verify all insurance certificates including Employers' Liability, Professional Indemnity, 
+                    and Public Liability. Request audit reports and HMRC compliance confirmations.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Operational Documentation</h3>
+                <p>
+                    Review sample contracts, worker handbooks, payslip examples, expense policies, 
+                    holiday policies, and pension scheme documentation.
+                </p>
+                
+                <div class="highlight-box">
+                    <p><strong>Best Practice:</strong> Maintain a central repository for all PSL documentation 
+                    with version control and regular review cycles. Ensure documents are updated annually or 
+                    when significant changes occur.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar teal-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Essential Documents:</h3>
+                    <ul>
+                        <li>Certificate of Incorporation</li>
+                        <li>Financial statements and accounts</li>
+                        <li>Insurance certificates (all types)</li>
+                        <li>Audit reports and certifications</li>
+                        <li>Sample employment contracts</li>
+                        <li>Worker handbooks and policies</li>
+                        <li>Payslip examples</li>
+                        <li>HMRC compliance confirmations</li>
+                        <li>Reference checks and testimonials</li>
+                        <li>Annual review documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: How We Can Help -->
+    <div class="page content-page">
+        <img src="nandblogo.png" alt="N&B Solutions" class="logo">
+        <div class="content-image" style="background-image: linear-gradient(135deg, rgba(30, 90, 125, 0.7) 0%, rgba(45, 138, 184, 0.7) 100%), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop');">
+            <div class="content-overlay">
+                <div class="section-number">4</div>
+                <h2 class="section-title">How We Can Help</h2>
+                <p class="section-subtitle">N&B Solutions - Your trusted compliance partner.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How We Can Help Detail Page -->
+    <div class="page detail-page pattern-dots">
+        <h1><span class="section-number-prefix">4</span> How N&B Solutions Can Help</h1>
+        
+        <div class="two-column-layout">
+            <div class="main-content">
+                <p>
+                    At N&B Solutions, we understand the complexities of PSL compliance and the 
+                    challenges agencies face in preparing for the April 2026 reforms. We're here 
+                    to support you every step of the way.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">PSL Compliance Audits</h3>
+                <p>
+                    Comprehensive review of your current PSL providers with risk assessment and 
+                    compliance gap analysis. We provide detailed reporting with actionable recommendations 
+                    and ongoing monitoring.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Compliance Consulting</h3>
+                <p>
+                    Expert guidance on regulatory requirements and support with HMRC enquiries. 
+                    We help with policy development, documentation, and training for your team.
+                </p>
+                
+                <h3 style="color: #2d8ab8; font-size: 1.3rem; margin-top: 25px; margin-bottom: 15px;">Payroll & Umbrella Solutions</h3>
+                <p>
+                    Fully compliant payroll services with transparent fee structures, dedicated account 
+                    management, and advanced technology platforms.
+                </p>
+                
+                <div class="highlight-box">
+                    <p><strong>Why Choose N&B Solutions?</strong> We combine deep compliance expertise 
+                    with cutting-edge technology to deliver solutions that protect your business and 
+                    support your growth. Our commitment to transparency and integrity sets us apart.</p>
+                </div>
+                
+                <p style="margin-top: 30px; font-size: 1.2rem; color: #1e5a7d;">
+                    <strong>N&B Solutions</strong><br>
+                    Your Partner in Compliance Excellence
+                </p>
+            </div>
+            
+            <div class="sidebar amber-theme">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-heading">Our Services:</h3>
+                    <ul>
+                        <li>PSL Compliance Audits</li>
+                        <li>Risk Assessment & Gap Analysis</li>
+                        <li>Compliance Consulting</li>
+                        <li>HMRC Enquiry Support</li>
+                        <li>Policy Development</li>
+                        <li>Training & Education</li>
+                        <li>Payroll Solutions</li>
+                        <li>Technology Platforms</li>
+                        <li>Document Management</li>
+                        <li>Ongoing Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
