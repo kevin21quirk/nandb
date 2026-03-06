@@ -510,14 +510,20 @@
             margin-right: 8px;
         }
 
-        /* PDF Download Button */
-        .pdf-download-btn {
+        /* Download Buttons */
+        .download-buttons {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .download-btn {
             background: linear-gradient(135deg, #2d8ab8 0%, #1e5a7d 100%);
             color: white;
-            padding: 15px 30px;
+            padding: 15px 25px;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 600;
@@ -528,25 +534,28 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            z-index: 1000;
         }
 
-        .pdf-download-btn:hover {
+        .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(30, 90, 125, 0.4);
         }
 
-        .pdf-download-btn:active {
+        .download-btn:active {
             transform: translateY(0);
         }
 
-        .pdf-download-btn svg {
+        .download-btn svg {
             width: 20px;
             height: 20px;
         }
 
+        .word-btn {
+            background: linear-gradient(135deg, #2b579a 0%, #1e3a5f 100%);
+        }
+
         @media print {
-            .pdf-download-btn {
+            .download-buttons {
                 display: none;
             }
 
@@ -586,22 +595,26 @@
                 max-width: 180px;
             }
 
-            /* Content pages - combine with detail pages */
+            /* Combine content cards with detail pages on same page */
             .content-page {
                 page-break-after: avoid !important;
-                padding-bottom: 30px !important;
+                page-break-inside: avoid !important;
+                padding-bottom: 0 !important;
                 min-height: auto !important;
+                height: auto !important;
             }
 
             .content-image {
-                margin-bottom: 30px !important;
+                margin-bottom: 40px !important;
                 page-break-after: avoid !important;
+                page-break-inside: avoid !important;
             }
 
-            /* Detail pages - ensure content shows */
+            /* Detail pages immediately follow content cards */
             .detail-page {
                 padding-top: 0 !important;
                 page-break-before: avoid !important;
+                page-break-inside: auto !important;
             }
 
             .detail-page h1 {
@@ -767,35 +780,12 @@
                 <div class="contents-number">1</div>
                 <div class="contents-details">
                     <h2>Understand & Minimise PSL Risk</h2>
-                    <ul>
-                        <li>Why rationalise your PSL?</li>
-                        <li>Where PSLs go wrong</li>
-                        <li>How to simplify your PSL</li>
-                    </ul>
                 </div>
             </li>
             <li class="contents-item">
                 <div class="contents-number">2</div>
                 <div class="contents-details">
                     <h2>PSL Compliance Framework</h2>
-                    <p class="subsection">2.1 Company Structure & Legitimacy</p>
-                    <ul>
-                        <li>Company structure</li>
-                        <li>Financial health</li>
-                        <li>Insurance</li>
-                        <li>Business continuity</li>
-                    </ul>
-                    <p class="subsection">2.2 Solutions</p>
-                    <p class="subsection">2.3 Contracts & Payments</p>
-                    <p class="subsection">2.4 Operational & Payroll Controls</p>
-                    <ul>
-                        <li>Expenses</li>
-                        <li>Holiday</li>
-                        <li>Right to Work</li>
-                        <li>VAT & AWR</li>
-                        <li>Pensions</li>
-                    </ul>
-                    <p class="subsection">2.5 Asking the Right Questions</p>
                 </div>
             </li>
             <li class="contents-item">
@@ -1261,18 +1251,29 @@
         </div>
     </div>
 
-    <!-- PDF Download Button -->
-    <button class="pdf-download-btn" onclick="downloadPDF()">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-        Download PDF
-    </button>
+    <!-- Download Buttons -->
+    <div class="download-buttons">
+        <button class="download-btn pdf-btn" onclick="downloadPDF()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            PDF
+        </button>
+        <button class="download-btn word-btn" onclick="downloadWord()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Word
+        </button>
+    </div>
 
     <script>
         function downloadPDF() {
-            // Trigger browser print dialog which allows saving as PDF
             window.print();
+        }
+
+        function downloadWord() {
+            alert('Word download functionality requires server-side conversion. For now, please use the PDF option and convert to Word using an online converter if needed.');
         }
     </script>
 
