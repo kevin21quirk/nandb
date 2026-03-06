@@ -555,38 +555,83 @@
                 color-adjust: exact !important;
             }
 
-            /* Ensure proper page breaks */
+            /* Page setup */
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Page breaks */
             .page {
                 page-break-after: always;
                 page-break-inside: avoid;
                 min-height: 100vh;
                 height: auto;
+                padding: 60px 80px !important;
+                position: relative;
             }
 
-            /* Prevent page breaks within these elements */
-            .content-image,
-            .two-column-layout,
-            .highlight-box,
-            .sidebar,
-            .detail-section {
+            /* Fix intro page logo positioning */
+            .intro-page .logo {
+                position: absolute;
+                top: 40px;
+                right: 80px;
+                max-width: 180px;
+            }
+
+            /* Content pages - reduce gap */
+            .content-page {
+                padding-bottom: 0 !important;
+            }
+
+            .content-image {
+                margin-bottom: 20px !important;
+            }
+
+            /* Detail pages - ensure content shows */
+            .detail-page {
+                padding-top: 60px !important;
+            }
+
+            .detail-page h1 {
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+            }
+
+            /* Two-column layout fixes */
+            .two-column-layout {
+                display: grid !important;
+                grid-template-columns: 1fr 350px !important;
+                gap: 30px !important;
+                margin-top: 20px !important;
                 page-break-inside: avoid;
             }
 
-            /* Ensure content pages display properly */
-            .content-page {
-                display: block;
+            .main-content {
+                padding-right: 0 !important;
             }
 
-            /* Ensure detail pages display properly */
-            .detail-page {
-                display: block;
+            .sidebar {
+                page-break-inside: avoid;
             }
 
-            /* Fix two-column layout for print */
-            .two-column-layout {
-                display: grid;
-                grid-template-columns: 1fr 400px;
-                gap: 40px;
+            /* Prevent orphaned content */
+            .content-image,
+            .highlight-box,
+            .detail-section h2,
+            .detail-section h3 {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+            }
+
+            /* Keep headings with content */
+            h1, h2, h3 {
+                page-break-after: avoid;
             }
 
             /* Ensure backgrounds print */
@@ -600,26 +645,18 @@
                 print-color-adjust: exact !important;
             }
 
-            /* Fix logo positioning for print */
-            .logo {
-                position: absolute;
-                top: 40px;
-                right: 80px;
-            }
-
-            /* Ensure proper sizing */
-            body {
-                width: 100%;
-                height: 100%;
-            }
-
-            /* Remove any flex that might cause issues */
-            .page {
-                display: block;
-            }
-
+            /* Fix specific page displays */
             .cover-page {
-                display: flex;
+                display: flex !important;
+            }
+
+            .intro-page {
+                display: block !important;
+            }
+
+            /* Reduce excessive white space */
+            .page.content-page + .page.detail-page {
+                padding-top: 60px !important;
             }
         }
 
