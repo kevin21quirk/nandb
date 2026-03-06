@@ -547,6 +547,80 @@
             .pdf-download-btn {
                 display: none;
             }
+
+            /* Force backgrounds and colors to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            /* Ensure proper page breaks */
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+                min-height: 100vh;
+                height: auto;
+            }
+
+            /* Prevent page breaks within these elements */
+            .content-image,
+            .two-column-layout,
+            .highlight-box,
+            .sidebar,
+            .detail-section {
+                page-break-inside: avoid;
+            }
+
+            /* Ensure content pages display properly */
+            .content-page {
+                display: block;
+            }
+
+            /* Ensure detail pages display properly */
+            .detail-page {
+                display: block;
+            }
+
+            /* Fix two-column layout for print */
+            .two-column-layout {
+                display: grid;
+                grid-template-columns: 1fr 400px;
+                gap: 40px;
+            }
+
+            /* Ensure backgrounds print */
+            .cover-page,
+            .intro-page,
+            .content-image,
+            .sidebar,
+            .sidebar-heading,
+            .highlight-box {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Fix logo positioning for print */
+            .logo {
+                position: absolute;
+                top: 40px;
+                right: 80px;
+            }
+
+            /* Ensure proper sizing */
+            body {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Remove any flex that might cause issues */
+            .page {
+                display: block;
+            }
+
+            .cover-page {
+                display: flex;
+            }
         }
 
         @media screen and (max-width: 768px) {
