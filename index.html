@@ -595,31 +595,34 @@
                 max-width: 180px;
             }
 
-            /* Combine content cards with detail pages on same page */
+            /* Force content cards and detail pages together */
             .content-page {
-                page-break-after: avoid !important;
-                page-break-inside: avoid !important;
-                padding-bottom: 0 !important;
-                min-height: auto !important;
+                page-break-after: auto !important;
+                page-break-inside: auto !important;
+                padding: 60px 80px 0 80px !important;
+                min-height: 0 !important;
                 height: auto !important;
             }
 
             .content-image {
-                margin-bottom: 40px !important;
-                page-break-after: avoid !important;
+                margin-bottom: 0 !important;
+                page-break-after: auto !important;
                 page-break-inside: avoid !important;
             }
 
-            /* Detail pages immediately follow content cards */
+            /* Detail pages - remove page class behavior */
             .detail-page {
-                padding-top: 0 !important;
-                page-break-before: avoid !important;
+                padding: 0 80px 60px 80px !important;
+                page-break-after: always !important;
+                page-break-before: auto !important;
                 page-break-inside: auto !important;
+                min-height: 0 !important;
             }
 
             .detail-page h1 {
-                margin-top: 0 !important;
+                margin-top: 40px !important;
                 margin-bottom: 20px !important;
+                page-break-after: avoid !important;
             }
 
             /* Two-column layout fixes */
