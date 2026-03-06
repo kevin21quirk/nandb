@@ -179,10 +179,12 @@
 
         .contents-list {
             list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 60px;
         }
 
         .contents-item {
-            margin-bottom: 50px;
             display: flex;
             gap: 30px;
         }
@@ -584,18 +586,22 @@
                 max-width: 180px;
             }
 
-            /* Content pages - reduce gap */
+            /* Content pages - combine with detail pages */
             .content-page {
-                padding-bottom: 0 !important;
+                page-break-after: avoid !important;
+                padding-bottom: 30px !important;
+                min-height: auto !important;
             }
 
             .content-image {
-                margin-bottom: 20px !important;
+                margin-bottom: 30px !important;
+                page-break-after: avoid !important;
             }
 
             /* Detail pages - ensure content shows */
             .detail-page {
-                padding-top: 60px !important;
+                padding-top: 0 !important;
+                page-break-before: avoid !important;
             }
 
             .detail-page h1 {
@@ -654,9 +660,21 @@
                 display: block !important;
             }
 
-            /* Reduce excessive white space */
+            /* Keep content cards with their detail pages */
             .page.content-page + .page.detail-page {
-                padding-top: 60px !important;
+                page-break-before: avoid !important;
+                padding-top: 0 !important;
+            }
+
+            /* Contents page grid layout */
+            .contents-list {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 30px 50px !important;
+            }
+
+            .contents-item {
+                page-break-inside: avoid;
             }
         }
 
