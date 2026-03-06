@@ -13,7 +13,7 @@ This compliance pack provides a comprehensive guide for building and maintaining
 
 ## Files
 
-- `compliance-pack.html` - Main compliance pack document
+- `index.html` - Main compliance pack document
 - `nandblogo.png` - N&B Solutions logo
 - `README.md` - This file
 - `.gitignore` - Git ignore file
@@ -50,7 +50,7 @@ The site will be live at `https://your-project-name.vercel.app`
 
 ## Local Viewing
 
-Simply open `compliance-pack.html` in any modern web browser. The document is fully self-contained with embedded CSS styling and uses external CDN images.
+Simply open `index.html` in any modern web browser. The document is fully self-contained with embedded CSS styling and uses external CDN images.
 
 ## Features
 
@@ -94,7 +94,7 @@ The compliance pack includes the following sections:
 
 To customize the content:
 
-1. Open `compliance-pack.html` in a text editor
+1. Open `index.html` in a text editor
 2. Modify the text content within the HTML
 3. Adjust colors in the CSS section if needed (current brand colors: #1e5a7d, #2d8ab8, #7ec8e3)
 4. Save and refresh in your browser
